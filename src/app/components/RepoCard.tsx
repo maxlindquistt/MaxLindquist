@@ -4,8 +4,7 @@ interface Repo {
   html_url: string;
   description: string | null;
   language: string | null;
-  stargazers_count: number;
-  forks_count: number;
+  created_at: string;
 }
 
 export default function RepoCard({ repo }: { repo: Repo }) {
@@ -24,8 +23,7 @@ export default function RepoCard({ repo }: { repo: Repo }) {
       <p className="text-gray-600 mb-4">{repo.description || 'No description'}</p>
       <div className="flex gap-4 text-sm text-gray-500">
         {repo.language && <span>🔷 {repo.language}</span>}
-        <span>⭐ {repo.stargazers_count}</span>
-        <span>🍴 {repo.forks_count}</span>
+        {repo.created_at && <span>📅 {new Date(repo.created_at).toLocaleDateString()}</span>}
       </div>
     </div>
   );
