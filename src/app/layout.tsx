@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-50">
-        <nav className="bg-white shadow-md p-6 mb-12">
+        <nav className="bg-gray-950 shadow-md p-6 mb-12">
           <div className="max-w-6xl mx-auto flex gap-6">
             <Link href="/" className="font-bold">Home</Link>
             <Link href="/projects">Projects</Link>
