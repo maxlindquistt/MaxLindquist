@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,21 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-gray-50">
-        <nav className="bg-gray-950 shadow-md p-6 mb-12">
-          <div className="max-w-6xl mx-auto flex gap-6">
-            <Link href="/" className="font-bold">Home</Link>
-            <Link href="/projects">Projects</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-        </nav>
+      <body className="bg-gray-50 min-h-screen flex flex-col">
+        <Navbar />
 
-        {children}
-        
-        <footer className="bg-gray-800 text-white p-8 mt-12">
-          <p className="text-center">Connect with me on GitHub</p>
-        </footer>
+        <div className="flex-grow">{children}</div>
+
+        <Footer />
       </body>
     </html>
   );
