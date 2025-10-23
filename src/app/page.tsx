@@ -19,7 +19,7 @@ export default function HomePage() {
             </TextCard>
           </div>
 
-          <div className="h-fit float-right md:mt-55">
+          <div className="h-fit float-right 2xl:mt-55">
             <TextCard>
               <h2 className="text-2xl font-bold mb-4">A Little About Me</h2>
               <p className="text-lg mb-2">
@@ -32,7 +32,7 @@ export default function HomePage() {
             </TextCard>
   
           </div>
-          <div className="h-fit float-left md:-mt-13">
+          <div className="h-fit float-left 2xl:-mt-13">
             <TextCard>
               <h2 className="text-2xl font-bold mb-4">Let's Connect</h2>
               <p className="text-lg mb-2">
@@ -45,7 +45,7 @@ export default function HomePage() {
             </TextCard>
           </div>
 
-          <div className="h-fit float-right md:mt-33">
+          <div className="h-fit float-right 2xl:mt-33">
             <TextCard>
               <h2 className="text-2xl font-bold mb-4">Currently Studying</h2>
               <p className="text-lg mb-2">
