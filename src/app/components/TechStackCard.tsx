@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export default function TechStackCard({ tech, logo }: { tech: string; logo: string }) {
     return (
-        <div className="p-4 border rounded flex items-center justify-between hover:scale-105 transition-transform duration-200">
+        <div className="p-4 min-w-[150px] lg:min-w-[400px] 2xl:min-w-[544px] border rounded flex items-center justify-between hover:scale-105 transition-transform duration-200">
             <span>{tech}</span>
-            <img src={logo} alt={`${tech} logo`} className="w-10 h-10" />
+            <Image src={logo} alt={`${tech} logo`} width={40} height={40} />
         </div>
     );
 }

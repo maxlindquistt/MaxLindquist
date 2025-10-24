@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Max Lindquist",
@@ -15,11 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <Navbar />
-
-        <div className="flex-grow">{children}</div>
-
+      <body className="bg-gray-50">
+        <Header />
+        {children}
         <Footer />
       </body>
     </html>

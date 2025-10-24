@@ -40,27 +40,28 @@ const logosPairs: { [key: string]: string } = {
     'Docker': '/docker-logo.svg',
 }
 
-export default function TechStack() {
+export default function TechStackSection() {
     return (
-        <div>
-            <h4 className="text-2xl font-semibold mb-2">Frontend</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <section className="p-6">
+            <h2 className="text-xl font-bold mb-4">Technologies I Have Used</h2>
+            <p className="mb-4 font-bold">Frontend:</p>
+            <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
                 {frontendTechStack.map((tech) => (
                     <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
                 ))}
             </div>
-            <h4 className="text-2xl font-semibold mb-2">Backend</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <p className="mb-4 font-bold">Backend:</p>
+            <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
                 {backendTechStack.map((tech) => (
                     <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
                 ))}
             </div>
-            <h4 className="text-2xl font-semibold mb-2">Other</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <p className="mb-4 font-bold">Other:</p>
+            <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
                 {otherTechStack.map((tech) => (
                     <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
                 ))}
             </div>
-        </div>
+        </section>
     );
 }
