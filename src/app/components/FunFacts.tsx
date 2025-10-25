@@ -1,13 +1,22 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const birthDate = new Date('2004-05-09T00:00:00Z');
-const now = new Date();
-const seconds = Math.floor((now.getTime() - birthDate.getTime()) / 1000);
 
 export default function FunFacts() {
     const [showFunFacts, setShowFunFacts] = useState(false);
+    const [seconds, setSeconds] = useState(() => 
+        Math.floor((Date.now() - birthDate.getTime()) / 1000)
+    );
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeconds(Math.floor((Date.now() - birthDate.getTime()) / 1000));
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const funFacts = [
         "🤸‍♂️ I can do a backflip",
