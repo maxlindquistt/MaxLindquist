@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import FunFacts from "./FunFacts";
+import Hobbies from "./Hobbies";
 
 export default function AboutSection() {
     return (
@@ -21,6 +22,8 @@ export default function AboutSection() {
             </div>
 
             <FunFacts />
+
+            <Hobbies />
             
         </section>
     );
