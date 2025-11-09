@@ -10,6 +10,7 @@ type Repo = {
   description: string | null;
   language: string | null;
   created_at: string;
+  homepage: string | null;
 };
 
 async function getRepos(): Promise<Repo[]> {
