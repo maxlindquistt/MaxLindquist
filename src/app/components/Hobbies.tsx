@@ -23,7 +23,7 @@ export default function Hobbies() {
                     showHobbies ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
                 }`}
             >
-                <div className="p-4 rounded bg-[#1b5e1b] text-white">
+                <div className="p-4 rounded bg-[#1b5e1b] text-white text-left">
                     <ul className="space-y-2 text-sm md:text-base lg:text-lg">
                         {hobbies.map((hobby, index) => (
                             <li key={index}>{hobby}</li>
