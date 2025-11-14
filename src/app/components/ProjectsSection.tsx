@@ -47,7 +47,7 @@ export default function ProjectsSection({ repos }: { repos: Repo[] }) {
 
                 <div 
                     ref={scrollContainerRef}
-                    className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide"
+                    className="flex gap-4 overflow-x-auto pb-4 lg:[&::-webkit-scrollbar]:hidden lg:[-ms-overflow-style:none] lg:[scrollbar-width:none]"
                 >
                     {repos.map(repo => (
                         <RepoCard key={repo.id} repo={repo} />
