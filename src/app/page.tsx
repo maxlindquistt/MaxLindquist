@@ -2,6 +2,7 @@ import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import TechStackSection from './components/TechStackSection';
+import LoadingScreen from './components/LoadingScreen';
 
 type Repo = {
   id: number;
@@ -40,6 +41,8 @@ export default async function Home() {
 
   return (
     <main className="max-w-6xl mx-auto">
+      <LoadingScreen />
+
       <AboutSection />
 
       <ProjectsSection repos={repos} />
