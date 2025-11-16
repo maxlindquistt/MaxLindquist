@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
 
 interface VantaEffect {
@@ -10,8 +9,6 @@ export default function VantaBackground() {
     const vantaRef = useRef<HTMLDivElement>(null);
     const [vantaEffect, setVantaEffect] = useState<VantaEffect | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    // Lock a stable viewport height in px to avoid iOS URL bar vh shifts
-    const [stableVH, setStableVH] = useState<number | null>(null);
 
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
@@ -35,46 +32,25 @@ export default function VantaBackground() {
                 });
             });
         }
-
         return () => {
             if (vantaEffect) vantaEffect.destroy();
         };
     }, [vantaEffect]);
 
-    // Compute a stable viewport height (once), update only on large changes/orientation
-    useEffect(() => {
-        const current = () => (window.visualViewport?.height ?? window.innerHeight);
-        const setInitial = () => setStableVH(Math.round(current()));
-        setInitial();
-
-        const onResize = () => {
-            const h = Math.round(current());
-            // Only accept big changes (likely orientation change), ignore tiny URL bar jitters
-            if (stableVH === null || Math.abs(h - stableVH) > 200) {
-                setStableVH(h);
-            }
-        };
-
-        window.addEventListener('orientationchange', onResize);
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('orientationchange', onResize);
-            window.removeEventListener('resize', onResize);
-        };
-    }, [stableVH]);
-
     return (
         <>
             <div 
                 ref={vantaRef} 
-                className="fixed -z-10 -top-[1200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+1600px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full"
+                className="fixed inset-0 -z-10 w-screen h-screen"
+                style={{ minHeight: '100dvh' }}
             />
             
             {/* Loading Screen */}
             <div 
-            className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] w-[calc(100%+400px)] h-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:w-full lg:h-full ${
-                isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
+                className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-white transition-opacity duration-700 w-screen ${
+                    isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                }`}
+                style={{ minHeight: '100dvh' }}
             >
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
                     <div className="w-28 h-28 border-8 text-blue-400 text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-blue-400 rounded-full">
