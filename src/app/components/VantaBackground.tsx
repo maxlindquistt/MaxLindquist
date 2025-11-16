@@ -77,15 +77,13 @@ export default function VantaBackground() {
                 ref={vantaRef} 
                 className="fixed -z-10"
                 style={{
-                    // Mobile: extended background with buffer, Desktop: normal positioning
+                    // Mobile: extended background with fixed anchors, Desktop: normal positioning
                     top: isMobile ? -500 : 0,
                     left: isMobile ? -200 : 0,
                     right: isMobile ? -200 : 0,
-                    bottom: isMobile ? undefined : 0,
-                    // height uses stableVH + buffer on mobile; auto on desktop
-                    height: isMobile 
-                        ? (stableVH !== null ? stableVH + 500 : (typeof window !== 'undefined' ? window.innerHeight + 500 : 1600)) + 'px'
-                        : '100%'
+                    bottom: isMobile ? 0 : 0,
+                    // Don't set height on mobile - let top/bottom anchors control it
+                    height: isMobile ? undefined : '100%'
                 }}
             />
             
