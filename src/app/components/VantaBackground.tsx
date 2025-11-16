@@ -11,15 +11,6 @@ export default function VantaBackground() {
     const [vantaEffect, setVantaEffect] = useState<VantaEffect | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
     // Lock a stable viewport height in px to avoid iOS URL bar vh shifts
-    const [stableVH, setStableVH] = useState<number | null>(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
 
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
@@ -48,28 +39,6 @@ export default function VantaBackground() {
             if (vantaEffect) vantaEffect.destroy();
         };
     }, [vantaEffect]);
-
-    // Compute a stable viewport height (once), update only on large changes/orientation
-    useEffect(() => {
-        const current = () => (window.visualViewport?.height ?? window.innerHeight);
-        const setInitial = () => setStableVH(Math.round(current()));
-        setInitial();
-
-        const onResize = () => {
-            const h = Math.round(current());
-            // Only accept big changes (likely orientation change), ignore tiny URL bar jitters
-            if (stableVH === null || Math.abs(h - stableVH) > 200) {
-                setStableVH(h);
-            }
-        };
-
-        window.addEventListener('orientationchange', onResize);
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('orientationchange', onResize);
-            window.removeEventListener('resize', onResize);
-        };
-    }, [stableVH]);
 
     return (
         <>

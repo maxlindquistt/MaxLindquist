@@ -15,10 +15,6 @@ export const metadata: Metadata = {
   description: "Max Lindquist's Personal Webspace",
 };
 
-export const viewport: Metadata = {
-  viewport: "width=device-width, height=device-height, initial-scale=1",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
