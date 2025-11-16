@@ -12,6 +12,14 @@ export default function VantaBackground() {
     const [isLoaded, setIsLoaded] = useState(false);
     // Lock a stable viewport height in px to avoid iOS URL bar vh shifts
     const [stableVH, setStableVH] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
@@ -67,7 +75,16 @@ export default function VantaBackground() {
         <>
             <div 
                 ref={vantaRef} 
-                className="fixed -z-10 -top-[1200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+1600px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full"
+                className="fixed -z-10"
+                style={{
+                    top: isMobile ? -1400 : 0,
+                    left: isMobile ? -200 : 0,
+                    right: isMobile ? -200 : 0,
+                    bottom: isMobile ? -200 : 0,
+                    height: isMobile 
+                        ? (stableVH !== null ? stableVH + 1600 : 2800) + 'px'
+                        : '100%'
+                }}
             />
             
             {/* Loading Screen */}
