@@ -14,6 +14,7 @@ export default function VantaBackground() {
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
             // Dynamically import to avoid SSR issues
+            // @ts-expect-error no types available
             import('vanta/dist/vanta.clouds.min').then((VANTA) => {
                 import('three').then((THREE) => {
                     setVantaEffect(
