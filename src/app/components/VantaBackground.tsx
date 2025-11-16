@@ -75,16 +75,7 @@ export default function VantaBackground() {
         <>
             <div 
                 ref={vantaRef} 
-                className="fixed -z-10"
-                style={{
-                    top: isMobile ? -1400 : 0,
-                    left: isMobile ? -200 : 0,
-                    right: isMobile ? -200 : 0,
-                    bottom: isMobile ? -200 : 0,
-                    height: isMobile 
-                        ? (stableVH !== null ? stableVH + 1600 : 2800) + 'px'
-                        : '100%'
-                }}
+                className="none -z-10 lg:fixed lg:w-full lg:h-full"
             />
             
             {/* Loading Screen */}
