@@ -96,7 +96,8 @@ export default function VantaBackground() {
                     top: 0,
                     left: 0,
                     right: 0,
-                    bottom: 0
+                    bottom: -100,
+                    minHeight: '100vh'
                 }}
             >
 
