@@ -12,14 +12,6 @@ export default function VantaBackground() {
     const [isLoaded, setIsLoaded] = useState(false);
     // Lock a stable viewport height in px to avoid iOS URL bar vh shifts
     const [stableVH, setStableVH] = useState<number | null>(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
 
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
@@ -80,14 +72,13 @@ export default function VantaBackground() {
             
             {/* Loading Screen */}
             <div 
-                className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full ${
-                    isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                }`}
+            className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] w-[calc(100%+400px)] h-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:w-full lg:h-full ${
+                isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
             >
-
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
-                <div className="w-28 h-28 border-8 text-blue-400 text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-blue-400 rounded-full">
-                </div>
+                    <div className="w-28 h-28 border-8 text-blue-400 text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-blue-400 rounded-full">
+                    </div>
                 </div>
                 <p className='mt-8 text-gray-700'>Loading...</p>
             </div>
