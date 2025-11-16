@@ -75,30 +75,14 @@ export default function VantaBackground() {
         <>
             <div 
                 ref={vantaRef} 
-                className="fixed -z-10"
-                style={{
-                    top: isMobile ? -1400 : 0,
-                    left: isMobile ? -200 : 0,
-                    right: isMobile ? -200 : 0,
-                    bottom: isMobile ? -200 : 0,
-                    height: isMobile 
-                        ? (stableVH !== null ? stableVH + 1600 : 2800) + 'px'
-                        : '100%'
-                }}
+                className="fixed -z-10 -top-[1200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+1600px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full"
             />
             
             {/* Loading Screen */}
             <div 
-                className={`fixed flex flex-col z-50 flex items-center justify-center bg-white transition-opacity duration-700 ${
+                className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full ${
                     isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
-                style={{
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: -100,
-                    minHeight: '100vh'
-                }}
             >
 
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
