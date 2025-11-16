@@ -44,7 +44,15 @@ export default function VantaBackground() {
         <>
             <div 
                 ref={vantaRef} 
-                className="fixed inset-0 -top-[600px] left-0 w-full h-[calc(100vh+600px)] -z-10 lg:top-0 lg:h-full"
+                className="fixed -z-10"
+                style={{
+                    top: '-1400px',
+                    left: '-200px',
+                    right: '-200px',
+                    bottom: '-200px',
+                    width: 'calc(100% + 400px)',
+                    height: 'calc(100% + 1600px)',
+                }}
             />
             
             {/* Loading Screen */}
