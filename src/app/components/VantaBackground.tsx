@@ -77,13 +77,13 @@ export default function VantaBackground() {
                 ref={vantaRef} 
                 className="fixed -z-10"
                 style={{
-                    // Mobile: extended background with fixed anchors, Desktop: normal positioning
-                    top: isMobile ? -500 : 0,
+                    top: isMobile ? -1400 : 0,
                     left: isMobile ? -200 : 0,
                     right: isMobile ? -200 : 0,
-                    bottom: isMobile ? 0 : 0,
-                    // Don't set height on mobile - let top/bottom anchors control it
-                    height: isMobile ? undefined : '100%'
+                    bottom: isMobile ? -200 : 0,
+                    height: isMobile 
+                        ? (stableVH !== null ? stableVH + 1600 : 2800) + 'px'
+                        : '100%'
                 }}
             />
             
@@ -93,13 +93,10 @@ export default function VantaBackground() {
                     isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
                 style={{
-                    top: isMobile ? -200 : 0,
-                    left: isMobile ? -200 : 0,
-                    right: isMobile ? -200 : 0,
-                    bottom: isMobile ? undefined : 0,
-                    height: isMobile 
-                        ? (stableVH !== null ? stableVH + 400 : (typeof window !== 'undefined' ? window.innerHeight + 400 : 1200)) + 'px'
-                        : '100%'
+                    top: -200,
+                    left: -200,
+                    right: -200,
+                    height: (stableVH !== null ? stableVH + 400 : (typeof window !== 'undefined' ? window.innerHeight + 400 : 1200)) + 'px'
                 }}
             >
                 <div className="text-center">
