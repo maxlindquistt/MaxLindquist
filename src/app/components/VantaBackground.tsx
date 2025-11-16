@@ -75,7 +75,7 @@ export default function VantaBackground() {
         <>
             <div 
                 ref={vantaRef} 
-                className="none -z-10 lg:fixed lg:w-full lg:h-full"
+                className="hidden -z-10 lg:fixed lg:w-full lg:h-full"
             />
             
             {/* Loading Screen */}
