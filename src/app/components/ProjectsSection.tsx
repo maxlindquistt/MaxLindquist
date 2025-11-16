@@ -31,7 +31,7 @@ export default function ProjectsSection({ repos }: { repos: Repo[] }) {
     };
 
     return (
-        <section className="p-6 my-12 bg-white shadow-md rounded-lg">
+        <section className="p-6 my-12 bg-white/40 shadow-md rounded-lg">
             <h2 className="text-xl font-bold mb-4">Projects</h2>
             <p className="mb-4">Here are some of my recent projects.</p>
             <div className="relative">
