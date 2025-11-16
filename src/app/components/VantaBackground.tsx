@@ -80,7 +80,7 @@ export default function VantaBackground() {
             
             {/* Loading Screen */}
             <div 
-                className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full ${
+                className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 width-[calc(100%+400px)] height-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full ${
                     isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
             >
