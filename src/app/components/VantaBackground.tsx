@@ -12,6 +12,14 @@ export default function VantaBackground() {
     const [isLoaded, setIsLoaded] = useState(false);
     // Lock a stable viewport height in px to avoid iOS URL bar vh shifts
     const [stableVH, setStableVH] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
@@ -69,12 +77,15 @@ export default function VantaBackground() {
                 ref={vantaRef} 
                 className="fixed -z-10"
                 style={{
-                    // Add a buffer around all sides and lock height to a stable px value
-                    top: -200,
-                    left: -200,
-                    right: -200,
-                    // height uses stableVH + buffer; fallback to 1000px buffer if null during first paint
-                    height: (stableVH !== null ? stableVH + 400 : (typeof window !== 'undefined' ? window.innerHeight + 400 : 1200)) + 'px'
+                    // Mobile: extended background with buffer, Desktop: normal positioning
+                    top: isMobile ? -500 : 0,
+                    left: isMobile ? -200 : 0,
+                    right: isMobile ? -200 : 0,
+                    bottom: isMobile ? undefined : 0,
+                    // height uses stableVH + buffer on mobile; auto on desktop
+                    height: isMobile 
+                        ? (stableVH !== null ? stableVH + 500 : (typeof window !== 'undefined' ? window.innerHeight + 500 : 1600)) + 'px'
+                        : '100%'
                 }}
             />
             
@@ -84,10 +95,13 @@ export default function VantaBackground() {
                     isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
                 style={{
-                    top: -200,
-                    left: -200,
-                    right: -200,
-                    height: (stableVH !== null ? stableVH + 400 : (typeof window !== 'undefined' ? window.innerHeight + 400 : 1200)) + 'px'
+                    top: isMobile ? -200 : 0,
+                    left: isMobile ? -200 : 0,
+                    right: isMobile ? -200 : 0,
+                    bottom: isMobile ? undefined : 0,
+                    height: isMobile 
+                        ? (stableVH !== null ? stableVH + 400 : (typeof window !== 'undefined' ? window.innerHeight + 400 : 1200)) + 'px'
+                        : '100%'
                 }}
             >
                 <div className="text-center">
