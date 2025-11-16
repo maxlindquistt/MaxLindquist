@@ -48,7 +48,7 @@ export default function VantaBackground() {
             
             {/* Loading Screen */}
             <div 
-                className={`fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-700 ${
+                className={`fixed -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+400px)] z-50 flex items-center justify-center bg-white transition-opacity duration-700 ${
                     isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
             >
