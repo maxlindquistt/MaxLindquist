@@ -89,20 +89,22 @@ export default function VantaBackground() {
             
             {/* Loading Screen */}
             <div 
-                className={`fixed z-50 flex items-center justify-center bg-white transition-opacity duration-700 ${
+                className={`fixed flex flex-col z-50 flex items-center justify-center bg-white transition-opacity duration-700 ${
                     isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
                 style={{
-                    top: -200,
-                    left: -200,
-                    right: -200,
-                    height: (stableVH !== null ? stableVH + 400 : (typeof window !== 'undefined' ? window.innerHeight + 400 : 1200)) + 'px'
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0
                 }}
             >
-                <div className="text-center">
-                    <div className="w-16 h-16 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-black text-lg font-medium">Loading...</p>
+
+                <div className="flex-col gap-4 w-full flex items-center justify-center">
+                <div className="w-28 h-28 border-8 text-blue-400 text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-blue-400 rounded-full">
                 </div>
+                </div>
+                <p className='mt-8 text-gray-700'>Loading...</p>
             </div>
         </>
     );
