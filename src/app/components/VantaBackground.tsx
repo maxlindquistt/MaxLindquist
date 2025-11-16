@@ -21,7 +21,7 @@ export default function VantaBackground() {
                         VANTA.default({
                             el: vantaRef.current,
                             THREE: THREE,
-                            mouseControls: true,
+                            mouseControls: false,
                             touchControls: false,
                             gyroControls: false,
                             minHeight: 200.00,
