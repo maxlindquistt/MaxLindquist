@@ -22,11 +22,10 @@ export default function VantaBackground() {
                             el: vantaRef.current,
                             THREE: THREE,
                             mouseControls: true,
-                            touchControls: true,
+                            touchControls: false,
                             gyroControls: false,
                             minHeight: 200.00,
-                            minWidth: 200.00,
-                            speed: 0.70
+                            minWidth: 200.00
                         })
                     );
                     // Mark as loaded after a short delay to ensure rendering started
@@ -44,15 +43,7 @@ export default function VantaBackground() {
         <>
             <div 
                 ref={vantaRef} 
-                className="fixed -z-10"
-                style={{
-                    top: '-1400px',
-                    left: '-200px',
-                    right: '-200px',
-                    bottom: '-200px',
-                    width: 'calc(100% + 400px)',
-                    height: 'calc(100% + 1600px)',
-                }}
+                className="fixed -z-10 -top-[1400px] -left-[200px] -right-[200px] -bottom-[200px] width-[calc(100%+400px)] height-[calc(100%+1600px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:width-full lg:height-full"
             />
             
             {/* Loading Screen */}
