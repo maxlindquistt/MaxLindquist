@@ -15,8 +15,8 @@ export default function LoadingScreen() {
 
     return (
         <div 
-            className={`fixed flex flex-col z-50 items-center justify-center bg-white transition-opacity duration-700 -top-[200px] -left-[200px] -right-[200px] -bottom-[200px] w-[calc(100%+400px)] h-[calc(100%+400px)] lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 lg:w-full lg:h-full ${
-                isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            className={`fixed flex flex-col z-50 items-center justify-center opacity-0 pointer-events-none bg-white transition-opacity duration-700 top-0 left-0 right-0 bottom-0 w-full h-full ${
+                isLoaded ? 'lg:opacity-0 pointer-events-none' : 'lg:opacity-100'
             }`}
             >
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
