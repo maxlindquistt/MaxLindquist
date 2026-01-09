@@ -20,16 +20,19 @@ This is my personal portfolio website where I share information about myself, my
 ## Tech Stack
 
 ### Frontend
+
 - **Next.js 16** - React framework with App Router
 - **React 19** - UI library
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS** - Utility-first CSS framework
 
 ### Backend/API
+
 - **Next.js API Routes** - Serverless API endpoints
 - **GitHub REST API** - Integration for fetching repository data
 
 ### Development Tools
+
 - **ESLint** - Code linting
 - **PostCSS** - CSS processing
 
@@ -63,6 +66,3 @@ This is my personal portfolio website where I share information about myself, my
 ## License
 
 © 2025 Max Lindquist. All rights reserved.
-
-
-
