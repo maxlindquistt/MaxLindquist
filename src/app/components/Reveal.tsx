@@ -21,7 +21,7 @@ export default function Reveal({ children, direction = 'up', delay = 0, classNam
                     observer.disconnect();
                 }
             },
-            { rootMargin: '0px 0px -20% 0px', threshold: 0.1 }
+            { rootMargin: '0px 0px -15% 0px', threshold: 0.1 }
         );
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
