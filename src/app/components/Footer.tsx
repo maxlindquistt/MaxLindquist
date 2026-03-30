@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <footer className="p-6 mt-12 bg-[#1b5e1b] text-white text-center lg:text-lg">
+        <footer className="p-6 mt-12 mb-16 lg:mb-0 bg-[#1b5e1b] text-white text-center lg:text-lg">
             <div className="mb-4 flex justify-center gap-4">
                 <p>Connect with me</p>
                 <Link href="https://github.com/maxlindquistt" target="_blank" rel="noopener noreferrer" className="underline">

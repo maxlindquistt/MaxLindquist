@@ -3,6 +3,7 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import TechStackSection from './components/TechStackSection';
 import LoadingScreen from './components/LoadingScreen';
+import Reveal from './components/Reveal';
 
 type Repo = {
   id: number;
@@ -40,10 +41,12 @@ export default async function Home() {
   const repos = await getRepos();
 
   return (
-    <main className="max-w-6xl mx-auto">
+    <main className="max-w-6xl mx-auto pb-20 lg:pb-0">
       <LoadingScreen />
 
-      <AboutSection />
+      <Reveal>
+        <AboutSection />
+      </Reveal>
 
       <ProjectsSection repos={repos} />
 

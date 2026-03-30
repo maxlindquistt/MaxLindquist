@@ -1,6 +1,7 @@
 'use client';
 
 import RepoCard from "./RepoCard";
+import Reveal from "./Reveal";
 import { useRef } from "react";
 
 type Repo = {
@@ -31,9 +32,10 @@ export default function ProjectsSection({ repos }: { repos: Repo[] }) {
     };
 
     return (
-        <section className="p-6 my-12 bg-white/40 shadow-md rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Projects</h2>
-            <p className="mb-4">Here are some of my recent projects.</p>
+        <section id="projects" className="p-6 my-12 bg-white border border-gray-100 shadow-md rounded-lg">
+            <Reveal direction="left"><h2 className="text-2xl font-bold mb-4">Projects</h2></Reveal>
+            <Reveal direction="left" delay={100}><p className="mb-4">Here are some of my recent projects.</p></Reveal>
+            <Reveal direction="up" delay={200}>
             <div className="relative">
                 <button
                     onClick={() => scroll('left')}
@@ -64,6 +66,7 @@ export default function ProjectsSection({ repos }: { repos: Repo[] }) {
                     </svg>
                 </button>
             </div>
+            </Reveal>
         </section>
     );
 }

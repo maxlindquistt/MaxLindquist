@@ -1,4 +1,5 @@
 import TechStackCard from "./TechStackCard";
+import Reveal from "./Reveal";
 
 const frontendTechStack: string[] = [
     'React',
@@ -42,8 +43,9 @@ const logosPairs: { [key: string]: string } = {
 
 export default function TechStackSection() {
     return (
-        <section className="p-6">
-            <h2 className="text-xl font-bold mb-4">Technologies I Have Used</h2>
+        <section id="tech" className="p-6">
+            <Reveal direction="left"><h2 className="text-2xl font-bold mb-4">Technologies I Have Used</h2></Reveal>
+            <Reveal direction="up" delay={150}>
             <p className="mb-4 font-bold">Frontend:</p>
             <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
                 {frontendTechStack.map((tech) => (
@@ -62,6 +64,7 @@ export default function TechStackSection() {
                     <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
                 ))}
             </div>
+            </Reveal>
         </section>
     );
 }

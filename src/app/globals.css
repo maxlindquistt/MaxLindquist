@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -13,5 +17,15 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+@media (max-width: 1023px) {
+  body {
+    background:
+      linear-gradient(to right, #e6f4ea 0%, transparent 50%),
+      linear-gradient(to left, #e6f4ea 0%, transparent 50%),
+      #ffffff;
+    min-height: 100vh;
+  }
 }
 
