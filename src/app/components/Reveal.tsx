@@ -14,6 +14,7 @@ export default function Reveal({ children, direction = 'up', delay = 0, classNam
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        const isDesktop = window.matchMedia('(min-width: 768px)').matches;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -21,7 +22,9 @@ export default function Reveal({ children, direction = 'up', delay = 0, classNam
                     observer.disconnect();
                 }
             },
-            { rootMargin: '0px 0px -15% 0px', threshold: 0.1 }
+            isDesktop
+                ? { rootMargin: '0px 0px -5% 0px', threshold: 0 }
+                : { rootMargin: '0px 0px -15% 0px', threshold: 0.1 }
         );
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
