@@ -3,6 +3,7 @@ import Reveal from "./Reveal";
 
 const frontendTechStack: string[] = [
     'React',
+    'Flutter',
     'Next.js',
     'TypeScript',
     'JavaScript (ES6+)',
@@ -13,6 +14,8 @@ const frontendTechStack: string[] = [
 
 const backendTechStack: string[] = [
     'Java',
+    'Go!',
+    'Python',
     'Node.js',
     'Express',
     'MongoDB',
@@ -22,6 +25,8 @@ const otherTechStack: string[] = [
     'Git & GitHub',
     'RESTful APIs',
     'Docker',
+    'Terraform',
+    'Ansible',
 ];
 
 const logosPairs: { [key: string]: string } = {
@@ -39,6 +44,11 @@ const logosPairs: { [key: string]: string } = {
     'Git & GitHub': '/git-logo.svg',
     'RESTful APIs': '/rest-api-logo.svg',
     'Docker': '/docker-logo.svg',
+    'Terraform': '/terraform-logo.svg',
+    'Ansible': '/ansible-logo.svg',
+    'Flutter': '/flutter-logo.svg',
+    'Go!': '/go-logo.svg',
+    'Python': '/python-logo.svg',
 }
 
 export default function TechStackSection() {
@@ -46,24 +56,24 @@ export default function TechStackSection() {
         <section id="tech" className="p-6">
             <Reveal direction="left"><h2 className="text-2xl font-bold mb-4">Technologies I Have Used</h2></Reveal>
             <Reveal direction="up" delay={150}>
-            <p className="mb-4 font-bold">Frontend:</p>
-            <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
-                {frontendTechStack.map((tech) => (
-                    <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
-                ))}
-            </div>
-            <p className="mb-4 font-bold">Backend:</p>
-            <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
-                {backendTechStack.map((tech) => (
-                    <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
-                ))}
-            </div>
-            <p className="mb-4 font-bold">Other:</p>
-            <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
-                {otherTechStack.map((tech) => (
-                    <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
-                ))}
-            </div>
+                <p className="mb-4 font-bold">Frontend:</p>
+                <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
+                    {frontendTechStack.map((tech) => (
+                        <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
+                    ))}
+                </div>
+                <p className="mb-4 font-bold">Backend:</p>
+                <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
+                    {backendTechStack.map((tech) => (
+                        <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
+                    ))}
+                </div>
+                <p className="mb-4 font-bold">Other:</p>
+                <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
+                    {otherTechStack.map((tech) => (
+                        <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
+                    ))}
+                </div>
             </Reveal>
         </section>
     );
