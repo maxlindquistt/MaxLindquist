@@ -1,6 +1,5 @@
 'use client';
 
-import Link from "next/link";
 import { navLinks } from "./nav/navLinks";
 import { useActiveSection } from "./nav/useActiveSection";
 import { focusRing } from "./styles";
@@ -15,7 +14,7 @@ export default function MobileNav() {
                     const isActive = activeSection === link.sectionId;
                     return (
                         <li key={link.href}>
-                            <Link
+                            <a
                                 href={link.href}
                                 aria-current={isActive ? "location" : undefined}
                                 className={`flex flex-col items-center gap-0.5 text-xs transition-colors px-4 py-2 rounded ${focusRing} ${
@@ -24,7 +23,7 @@ export default function MobileNav() {
                             >
                                 {link.icon}
                                 {link.label}
-                            </Link>
+                            </a>
                         </li>
                     );
                 })}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { focusRing } from "./styles";
 
@@ -34,9 +33,9 @@ export default function Button({ href, children, variant = "primary", external, 
     }
 
     return (
-        <Link href={href} className={classes}>
+        <a href={href} className={classes}>
             {children}
             {icon}
-        </Link>
+        </a>
     );
 }
