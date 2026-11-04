@@ -1,51 +1,58 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const birthDate = new Date('2004-05-09T00:00:00Z');
 
-export default function FunFacts() {
-    const [showFunFacts, setShowFunFacts] = useState(false);
-    const [seconds, setSeconds] = useState(() => 
-        Math.floor((Date.now() - birthDate.getTime()) / 1000)
-    );
+function secondsSinceBirth() {
+    return Math.floor((Date.now() - birthDate.getTime()) / 1000);
+}
+
+/**
+ * Live "seconds since birth" counter. Renders a stable placeholder on the server
+ * (the page is statically prerendered) and starts ticking after hydration, so the
+ * server and first client render always match.
+ */
+function SecondsCounter() {
+    const [seconds, setSeconds] = useState<number | null>(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds(Math.floor((Date.now() - birthDate.getTime()) / 1000));
-        }, 1000);
-
-        return () => clearInterval(interval);
+        const tick = () => setSeconds(secondsSinceBirth());
+        const first = setTimeout(tick, 0);
+        // Respect reduced motion: show the real number once, but don't keep it ticking.
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const interval = reduceMotion ? undefined : setInterval(tick, 1000);
+        return () => {
+            clearTimeout(first);
+            if (interval !== undefined) clearInterval(interval);
+        };
     }, []);
 
-    const funFacts = [
-        "🤸‍♂️ I can do a backflip",
-        "⏳ I was born " + seconds + " seconds ago",
-        "🌴 My middle name is Olof, after Olof Palme (Maybe)",
+    return (
+        <span className="tabular-nums font-semibold text-[#1b5e1b]">
+            {seconds === null ? "over 700 million" : seconds.toLocaleString("en-US")}
+        </span>
+    );
+}
+
+export default function FunFacts() {
+    const funFacts: { emoji: string; text: React.ReactNode }[] = [
+        { emoji: "🤸‍♂️", text: "I can do a backflip" },
+        { emoji: "⏳", text: <>I was born <SecondsCounter /> seconds ago</> },
+        { emoji: "🌴", text: "My middle name is Olof, after Olof Palme (maybe)" },
     ];
 
     return (
-        <>
-            <button 
-                onClick={() => setShowFunFacts(!showFunFacts)}
-                className="bg-[#1b5e1b] text-white mx-auto mt-8 px-4 py-2 rounded hover:bg-green-700 transition-colors"
-            >
-                {showFunFacts ? "Hide Fun Facts" : "Show Fun Facts"}
-            </button>
-
-            <div 
-                className={`w-full overflow-hidden transition-all duration-300 ease-in-out ${
-                    showFunFacts ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
-                }`}
-            >
-                <div className="p-4 rounded bg-[#1b5e1b] text-left text-white 2xl:col-span-1">
-                    <ul className="space-y-2 text-sm md:text-base lg:text-lg">
-                        {funFacts.map((fact, index) => (
-                            <li key={index}>{fact}</li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </>
+        <div className="h-full rounded-lg border border-green-100 bg-green-50/60 p-5 text-left">
+            <h3 className="mb-3 text-lg font-semibold text-gray-900">Fun facts</h3>
+            <ul className="space-y-2 text-gray-700">
+                {funFacts.map(({ emoji, text }) => (
+                    <li key={emoji} className="flex gap-2">
+                        <span aria-hidden="true">{emoji}</span>
+                        <span>{text}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }

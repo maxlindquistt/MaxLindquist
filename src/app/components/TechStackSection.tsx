@@ -1,4 +1,4 @@
-import TechStackCard from "./TechStackCard";
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 const frontendTechStack: string[] = [
@@ -10,15 +10,17 @@ const frontendTechStack: string[] = [
     'Tailwind CSS',
     'HTML5',
     'CSS3',
+    'Vite',
 ];
 
 const backendTechStack: string[] = [
     'Java',
-    'Go!',
+    'Go',
     'Python',
     'Node.js',
     'Express',
     'MongoDB',
+    'PostgreSQL',
 ];
 
 const otherTechStack: string[] = [
@@ -27,6 +29,7 @@ const otherTechStack: string[] = [
     'Docker',
     'Terraform',
     'Ansible',
+    'OpenStack',
 ];
 
 const logosPairs: { [key: string]: string } = {
@@ -47,32 +50,49 @@ const logosPairs: { [key: string]: string } = {
     'Terraform': '/terraform-logo.svg',
     'Ansible': '/ansible-logo.svg',
     'Flutter': '/flutter-logo.svg',
-    'Go!': '/go-logo.svg',
+    'Go': '/go-logo.svg',
     'Python': '/python-logo.svg',
+    'Vite': '/vite-logo.svg',
+    'PostgreSQL': '/postgresql-logo.svg',
+    'OpenStack': '/openstack-logo.svg',
+}
+
+const techGroups: { id: string; label: string; items: string[] }[] = [
+    { id: 'frontend', label: 'Frontend', items: frontendTechStack },
+    { id: 'backend', label: 'Backend', items: backendTechStack },
+    { id: 'tools-devops', label: 'Tools & DevOps', items: otherTechStack },
+];
+
+function TechChip({ tech }: { tech: string }) {
+    const logo = logosPairs[tech];
+    return (
+        <li className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-800">
+            {/* Decorative: the name is right next to it. */}
+            {logo && <Image src={logo} alt="" width={20} height={20} className="h-5 w-5 object-contain" />}
+            <span>{tech}</span>
+        </li>
+    );
 }
 
 export default function TechStackSection() {
     return (
-        <section id="tech" className="p-6">
-            <Reveal direction="left"><h2 className="text-2xl font-bold mb-4">Technologies I Have Used</h2></Reveal>
+        <section id="tech" aria-labelledby="tech-heading" className="p-6 my-12 bg-white border border-gray-100 shadow-md rounded-lg">
+            <Reveal direction="left"><h2 id="tech-heading" className="text-2xl font-bold mb-6">Technologies I&apos;ve used</h2></Reveal>
             <Reveal direction="up" delay={150}>
-                <p className="mb-4 font-bold">Frontend:</p>
-                <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
-                    {frontendTechStack.map((tech) => (
-                        <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
-                    ))}
-                </div>
-                <p className="mb-4 font-bold">Backend:</p>
-                <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
-                    {backendTechStack.map((tech) => (
-                        <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
-                    ))}
-                </div>
-                <p className="mb-4 font-bold">Other:</p>
-                <div className="grid grid-cols-2 gap-4 mb-6 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:justify-self-center [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.5rem)]">
-                    {otherTechStack.map((tech) => (
-                        <TechStackCard key={tech} tech={tech} logo={logosPairs[tech]} />
-                    ))}
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
+                    {techGroups.map(({ id, label, items }) => {
+                        const headingId = `tech-${id}`;
+                        return (
+                            <div key={id}>
+                                <h3 id={headingId} className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#1b5e1b]">{label}</h3>
+                                <ul aria-labelledby={headingId} className="flex flex-wrap gap-2">
+                                    {items.map((tech) => (
+                                        <TechChip key={tech} tech={tech} />
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    })}
                 </div>
             </Reveal>
         </section>

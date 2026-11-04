@@ -1,72 +1,38 @@
-'use client';
-
-import RepoCard from "./RepoCard";
+import ProjectCard from "./ProjectCard";
 import Reveal from "./Reveal";
-import { useRef } from "react";
+import { projects } from "../data/projects";
+import { GITHUB_URL } from "./SocialLinks";
+import { focusRing } from "./styles";
 
-type Repo = {
-  id: number;
-  name: string;
-  html_url: string;
-  description: string | null;
-  language: string | null;
-  created_at: string;
-  homepage: string | null;
-};
-
-export default function ProjectsSection({ repos }: { repos: Repo[] }) {
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-    const scroll = (direction: 'left' | 'right') => {
-        if (scrollContainerRef.current) {
-            const scrollAmount = 350; // Adjust based on card width + gap
-            const newScrollPosition = direction === 'left' 
-                ? scrollContainerRef.current.scrollLeft - scrollAmount
-                : scrollContainerRef.current.scrollLeft + scrollAmount;
-            
-            scrollContainerRef.current.scrollTo({
-                left: newScrollPosition,
-                behavior: 'smooth'
-            });
-        }
-    };
-
+export default function ProjectsSection() {
     return (
-        <section id="projects" className="p-6 my-12 bg-white border border-gray-100 shadow-md rounded-lg">
-            <Reveal direction="left"><h2 className="text-2xl font-bold mb-4">Projects</h2></Reveal>
-            <Reveal direction="left" delay={100}><p className="mb-4">Here are some of my recent projects.</p></Reveal>
-            <Reveal direction="up" delay={200}>
-            <div className="relative">
-                <button
-                    onClick={() => scroll('left')}
-                    className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/30 hover:bg-white shadow-lg rounded-full p-3 transition-colors"
-                    aria-label="Scroll left"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
-
-                <div 
-                    ref={scrollContainerRef}
-                    className="flex gap-4 overflow-x-auto pb-4 lg:[&::-webkit-scrollbar]:hidden lg:[-ms-overflow-style:none] lg:[scrollbar-width:none]"
-                >
-                    {repos.map(repo => (
-                        <RepoCard key={repo.id} repo={repo} />
-                    ))}
-                </div>
-
-                <button
-                    onClick={() => scroll('right')}
-                    className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/30 hover:bg-white shadow-lg rounded-full p-3 transition-colors"
-                    aria-label="Scroll right"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
+        <section id="projects" aria-labelledby="projects-heading" className="p-6 my-12 bg-white border border-gray-100 shadow-md rounded-lg">
+            <Reveal direction="left"><h2 id="projects-heading" className="text-2xl font-bold mb-2">Featured projects</h2></Reveal>
+            <Reveal direction="left" delay={100}>
+                <p className="mb-6 text-gray-700">A few things I&apos;ve built, from a live client website to cloud infrastructure.</p>
             </Reveal>
+
+            <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {projects.map((project, index) => (
+                    <li key={project.slug}>
+                        <Reveal direction="up" delay={(index % 2) * 100} className="h-full">
+                            <ProjectCard project={project} />
+                        </Reveal>
+                    </li>
+                ))}
+            </ul>
+
+            <p className="mt-6 text-center">
+                <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-1 rounded px-1 font-semibold text-[#1b5e1b] underline underline-offset-4 hover:text-green-700 ${focusRing}`}
+                >
+                    More projects on GitHub <span aria-hidden="true">→</span>
+                    <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+            </p>
         </section>
     );
 }

@@ -19,13 +19,28 @@ body {
   box-sizing: border-box;
 }
 
-@media (max-width: 1023px) {
-  body {
-    background:
-      linear-gradient(to right, #e6f4ea 0%, transparent 50%),
-      linear-gradient(to left, #e6f4ea 0%, transparent 50%),
-      #ffffff;
-    min-height: 100vh;
+/* Calm brand-tinted backdrop at every width; white section cards sit on top of it. */
+body {
+  background:
+    linear-gradient(to right, #e6f4ea 0%, transparent 50%),
+    linear-gradient(to left, #e6f4ea 0%, transparent 50%),
+    #ffffff;
+  min-height: 100vh;
+}
+
+/* Keep anchored sections clear of the sticky desktop nav (h-16 = 4rem). */
+section[id] {
+  scroll-margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 5rem;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
